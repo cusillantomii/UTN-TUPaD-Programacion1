@@ -1,0 +1,115 @@
+import math
+ 
+ 
+# 1) Función sin parámetros que imprime un mensaje
+def imprimir_hola_mundo():
+    print("Hola Mundo!")
+ 
+ 
+# 2) Función que devuelve un saludo personalizado
+def saludar_usuario(nombre):
+    return f"Hola {nombre}!"
+ 
+ 
+# 3) Función con cuatro parámetros que imprime una presentación
+def informacion_personal(nombre, apellido, edad, residencia):
+    print(f"Soy {nombre} {apellido}, tengo {edad} años y vivo en {residencia}")
+ 
+ 
+# 4) Área y perímetro del círculo
+def calcular_area_circulo(radio):
+    return math.pi * radio ** 2
+ 
+ 
+def calcular_perimetro_circulo(radio):
+    return 2 * math.pi * radio
+ 
+ 
+# 5) Segundos a horas
+def segundos_a_horas(segundos):
+    return segundos / 3600
+ 
+ 
+# 6) Tabla de multiplicar del 1 al 10
+def tabla_multiplicar(numero):
+    for i in range(1, 11):
+        print(f"{numero} x {i} = {numero * i}")
+ 
+ 
+# 7) Operaciones básicas: devuelve una tupla (suma, resta, multiplicación, división)
+def operaciones_basicas(a, b):
+    suma = a + b
+    resta = a - b
+    multiplicacion = a * b
+    division = a / b if b != 0 else None  # evita dividir por cero
+    return suma, resta, multiplicacion, division
+ 
+ 
+# 8) Índice de masa corporal
+def calcular_imc(peso, altura):
+    return peso / altura ** 2
+ 
+ 
+# 9) Celsius a Fahrenheit
+def celsius_a_fahrenheit(celsius):
+    return celsius * 9 / 5 + 32
+ 
+ 
+# 10) Promedio de tres números
+def calcular_promedio(a, b, c):
+    return (a + b + c) / 3
+ 
+ 
+# ---------------- Programa principal ----------------
+if __name__ == "__main__":
+    print("--- Ejercicio 1 ---")
+    imprimir_hola_mundo()
+ 
+    print("\n--- Ejercicio 2 ---")
+    nombre = input("Ingresá tu nombre: ")
+    print(saludar_usuario(nombre))
+ 
+    print("\n--- Ejercicio 3 ---")
+    nombre = input("Nombre: ")
+    apellido = input("Apellido: ")
+    edad = int(input("Edad: "))
+    residencia = input("Residencia: ")
+    informacion_personal(nombre, apellido, edad, residencia)
+ 
+    print("\n--- Ejercicio 4 ---")
+    radio = float(input("Ingresá el radio del círculo: "))
+    print(f"Área: {calcular_area_circulo(radio):.2f}")
+    print(f"Perímetro: {calcular_perimetro_circulo(radio):.2f}")
+ 
+    print("\n--- Ejercicio 5 ---")
+    segundos = float(input("Ingresá la cantidad de segundos: "))
+    print(f"{segundos} segundos equivalen a {segundos_a_horas(segundos):.4f} horas")
+ 
+    print("\n--- Ejercicio 6 ---")
+    numero = int(input("Ingresá un número: "))
+    tabla_multiplicar(numero)
+ 
+    print("\n--- Ejercicio 7 ---")
+    a = float(input("Ingresá el primer número: "))
+    b = float(input("Ingresá el segundo número: "))
+    suma, resta, mult, div = operaciones_basicas(a, b)
+    print(f"Suma: {suma}")
+    print(f"Resta: {resta}")
+    print(f"Multiplicación: {mult}")
+    print(f"División: {div if div is not None else 'no se puede dividir por cero'}")
+ 
+    print("\n--- Ejercicio 8 ---")
+    peso = float(input("Peso en kg: "))
+    altura = float(input("Altura en metros: "))
+    print(f"Tu IMC es: {calcular_imc(peso, altura):.2f}")
+ 
+    print("\n--- Ejercicio 9 ---")
+    celsius = float(input("Temperatura en grados Celsius: "))
+    print(f"{celsius} °C equivalen a {celsius_a_fahrenheit(celsius):.2f} °F")
+ 
+    print("\n--- Ejercicio 10 ---")
+    n1 = float(input("Primer número: "))
+    n2 = float(input("Segundo número: "))
+    n3 = float(input("Tercer número: "))
+    print(f"El promedio es: {calcular_promedio(n1, n2, n3):.2f}")
+ 

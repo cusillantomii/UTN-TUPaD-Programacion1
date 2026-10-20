@@ -1,0 +1,163 @@
+# Práctico 7: Estructuras de datos complejas
+
+# Ejercicio 1: añadir frutas al diccionario
+
+print("--- Ejercicio 1 ---")
+precios_frutas = {'Banana': 1200, 'Ananá': 2500, 'Melón': 3000, 'Uva': 1450}
+
+precios_frutas['Naranja'] = 1200
+precios_frutas['Manzana'] = 1500
+precios_frutas['Pera'] = 2300
+
+print(precios_frutas)
+
+
+# Ejercicio 2: actualizar precios
+
+print("\n--- Ejercicio 2 ---")
+precios_frutas['Banana'] = 1330
+precios_frutas['Manzana'] = 1700
+precios_frutas['Melón'] = 2800
+
+print(precios_frutas)
+
+
+# Ejercicio 3: lista solo con las frutas (las claves)
+
+print("\n--- Ejercicio 3 ---")
+frutas = list(precios_frutas.keys())
+print(frutas)
+
+
+# Ejercicio 4: agenda de teléfonos
+
+print("\n--- Ejercicio 4 ---")
+contactos = {}
+
+for i in range(5):
+    nombre = input(f"Nombre del contacto {i + 1}: ").strip()
+    numero = input(f"Número de {nombre}: ").strip()
+    contactos[nombre] = numero
+
+consulta = input("\n¿De qué contacto querés el número? ").strip()
+if consulta in contactos:
+    print(f"El número de {consulta} es {contactos[consulta]}")
+else:
+    print(f"No existe el contacto '{consulta}'.")
+
+
+# Ejercicio 5: palabras únicas y recuento
+
+print("\n--- Ejercicio 5 ---")
+frase = input("Ingresá una frase: ").lower()
+palabras = frase.split()
+
+palabras_unicas = set(palabras)
+recuento = {}
+for palabra in palabras:
+    recuento[palabra] = recuento.get(palabra, 0) + 1
+
+print("Palabras_únicas:", palabras_unicas)
+print("Recuento:", recuento)
+
+
+# Ejercicio 6: alumnos con tupla de 3 notas
+
+print("\n--- Ejercicio 6 ---")
+alumnos = {}
+
+for i in range(3):
+    nombre = input(f"Nombre del alumno {i + 1}: ").strip()
+    nota1 = float(input("  Nota 1: "))
+    nota2 = float(input("  Nota 2: "))
+    nota3 = float(input("  Nota 3: "))
+    alumnos[nombre] = (nota1, nota2, nota3)
+
+print("\nPromedios:")
+for nombre, notas in alumnos.items():
+    promedio = sum(notas) / len(notas)
+    print(f"{nombre}: {promedio:.2f}")
+
+
+# Ejercicio 7: operaciones con sets
+
+print("\n--- Ejercicio 7 ---")
+parcial_1 = {1, 2, 3, 4, 5, 6}
+parcial_2 = {4, 5, 6, 7, 8}
+
+ambos = parcial_1 & parcial_2                  # intersección
+solo_uno = parcial_1 ^ parcial_2               # diferencia simétrica
+al_menos_uno = parcial_1 | parcial_2           # unión
+
+print("Aprobaron ambos parciales:", ambos)
+print("Aprobaron solo uno de los dos:", solo_uno)
+print("Aprobaron al menos un parcial:", al_menos_uno)
+
+
+# Ejercicio 8: stock de productos
+
+print("\n--- Ejercicio 8 ---")
+stock = {'lapicera': 50, 'cuaderno': 30, 'regla': 15}
+
+opcion = ""
+while opcion != "4":
+    print("\n1) Consultar stock")
+    print("2) Agregar unidades a un producto existente")
+    print("3) Agregar un producto nuevo")
+    print("4) Salir")
+    opcion = input("Elegí una opción: ").strip()
+
+    if opcion == "1":
+        producto = input("Producto: ").strip().lower()
+        if producto in stock:
+            print(f"Stock de {producto}: {stock[producto]}")
+        else:
+            print("El producto no existe.")
+
+    elif opcion == "2":
+        producto = input("Producto: ").strip().lower()
+        if producto in stock:
+            cantidad = int(input("Unidades a agregar: "))
+            stock[producto] += cantidad
+            print(f"Nuevo stock de {producto}: {stock[producto]}")
+        else:
+            print("El producto no existe. Usá la opción 3 para agregarlo.")
+
+    elif opcion == "3":
+        producto = input("Nombre del nuevo producto: ").strip().lower()
+        if producto in stock:
+            print("Ese producto ya existe. Usá la opción 2 para sumar unidades.")
+        else:
+            cantidad = int(input("Stock inicial: "))
+            stock[producto] = cantidad
+            print(f"Producto '{producto}' agregado con {cantidad} unidades.")
+
+    elif opcion != "4":
+        print("Opción inválida.")
+
+
+# Ejercicio 9: agenda con tuplas (día, hora)
+
+print("\n--- Ejercicio 9 ---")
+agenda = {
+    ("lunes", "10:00"): "Reunión",
+    ("martes", "15:00"): "Clase de inglés"
+}
+
+dia = input("Día a consultar: ").strip().lower()
+hora = input("Hora (formato HH:MM): ").strip()
+
+if (dia, hora) in agenda:
+    print(f"El {dia} a las {hora} tenés: {agenda[(dia, hora)]}")
+else:
+    print(f"No hay actividades el {dia} a las {hora}.")
+
+
+# Ejercicio 10: invertir diccionario país -> capital
+
+print("\n--- Ejercicio 10 ---")
+original = {"Argentina": "Buenos Aires", "Chile": "Santiago"}
+invertido = {capital: pais for pais, capital in original.items()}
+
+print("Original:", original)
+print("Invertido:", invertido)

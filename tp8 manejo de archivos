@@ -1,0 +1,72 @@
+# --- Actividad 1: Crear archivo inicial con productos ---
+# Se crea el archivo "productos.txt" con tres productos separados por comas.
+productos_iniciales = [
+    "Lapicera,120.5,30\n",
+    "Cuaderno Universitario,850.0,15\n",
+    "Resaltador,300.0,20\n"
+]
+
+with open("productos.txt", "w") as archivo:
+    archivo.writelines(productos_iniciales)
+
+
+# --- Actividad 2 y 4: Leer, mostrar y cargar productos en una lista de diccionarios ---
+productos = [] # Lista de diccionarios para la Actividad 4
+
+print("--- Listado de Productos ---")
+with open("productos.txt", "r") as archivo:
+    for linea in archivo:
+        # Procesamos con strip() y split(",") según lo requerido
+        partes = linea.strip().split(",")
+        nombre = partes[0]
+        precio = float(partes[1])
+        cantidad = int(partes[2])
+        
+        # Actividad 4: Cargar en el diccionario
+        diccionario_producto = {"nombre": nombre, "precio": precio, "cantidad": cantidad}
+        productos.append(diccionario_producto)
+        
+        # Actividad 2: Mostrar con el formato específico
+        print(f"Producto: {nombre} | Precio: ${precio} | Cantidad: {cantidad}")
+
+
+# --- Actividad 3: Agregar productos desde teclado ---
+print("\n--- Agregar un Nuevo Producto ---")
+nuevo_nombre = input("Nombre del producto: ")
+nuevo_precio = input("Precio: ")
+nueva_cantidad = input("Cantidad: ")
+
+# Se usa el modo 'a' (append) para no borrar el contenido existente
+with open("productos.txt", "a") as archivo:
+    archivo.write(f"{nuevo_nombre},{nuevo_precio},{nueva_cantidad}\n")
+
+# Agregamos también el nuevo producto a nuestra lista de diccionarios en memoria
+productos.append({
+    "nombre": nuevo_nombre, 
+    "precio": float(nuevo_precio), 
+    "cantidad": int(nueva_cantidad)
+})
+
+
+# --- Actividad 5: Buscar producto por nombre ---
+print("\n--- Buscar Producto ---")
+busqueda = input("Ingrese el nombre del producto a buscar: ")
+encontrado = False
+
+for prod in productos:
+    if prod["nombre"].lower() == busqueda.lower():
+        print(f"Producto encontrado: {prod['nombre']} | Precio: ${prod['precio']} | Cantidad: {prod['cantidad']}")
+        encontrado = True
+        break
+
+if not encontrado:
+    print("Error: El producto no existe en el registro.")
+
+
+# --- Actividad 6: Guardar los productos actualizados ---
+# Se sobrescribe el archivo con la lista actual (que incluye el nuevo producto)
+with open("productos.txt", "w") as archivo:
+    for prod in productos:
+        archivo.write(f"{prod['nombre']},{prod['precio']},{prod['cantidad']}\n")
+
+print("\nLos cambios han sido guardados y el archivo fue actualizado correctamente.")

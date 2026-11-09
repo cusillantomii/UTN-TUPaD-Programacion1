@@ -1,0 +1,96 @@
+#  Ejercicio 1: Factorial 
+def factorial(n):
+    if n <= 1:                      
+        return 1
+    return n * factorial(n - 1)     
+
+
+#  Ejercicio 2: Fibonacci
+def fibonacci(pos):
+    if pos == 0:                    
+        return 0
+    if pos == 1:
+        return 1
+    return fibonacci(pos - 1) + fibonacci(pos - 2)
+
+
+#  Ejercicio 3: Potencia 
+def potencia(base, exponente):
+    if exponente == 0:              
+        return 1
+    return base * potencia(base, exponente - 1)   # n^m = n * n^(m-1)
+
+
+#  Ejercicio 4: Decimal a binario 
+def decimal_a_binario(n):
+    if n < 2:                       
+        return str(n)
+    return decimal_a_binario(n // 2) + str(n % 2)
+
+
+#  Ejercicio 5: Palíndromo 
+def es_palindromo(palabra):
+    if len(palabra) <= 1:           
+        return True
+    if palabra[0] != palabra[-1]:   
+        return False
+    return es_palindromo(palabra[1:-1])   
+
+
+#  Ejercicio 6: Suma de dígitos 
+def suma_digitos(n):
+    if n < 10:                      
+        return n
+    return n % 10 + suma_digitos(n // 10)
+
+
+#  Ejercicio 7: Piramide de bloques 
+def contar_bloques(n):
+    if n <= 1:                      
+        return n
+    return n + contar_bloques(n - 1)
+
+
+#  Ejercicio 8: Contar digito 
+def contar_digito(numero, digito):
+    if numero < 10:                 # caso base: un solo digito
+        return 1 if numero == digito else 0
+    coincide = 1 if numero % 10 == digito else 0
+    return coincide + contar_digito(numero // 10, digito)
+
+
+#  Programa principal 
+if __name__ == "__main__":
+    # 1) Factoriales de 1 hasta el numero ingresado
+    n = int(input("Ejercicio 1 - Ingrese un numero: "))
+    for i in range(1, n + 1):
+        print(f"{i}! = {factorial(i)}")
+
+    # 2) Serie de Fibonacci hasta la posicion indicada
+    p = int(input("\nEjercicio 2 - Ingrese la posicion: "))
+    print("Serie:", [fibonacci(i) for i in range(p + 1)])
+
+    # 3) Potencia
+    b = int(input("\nEjercicio 3 - Ingrese la base: "))
+    e = int(input("Ingrese el exponente (entero >= 0): "))
+    print(f"{b}^{e} = {potencia(b, e)}")
+
+    # 4) Binario
+    d = int(input("\nEjercicio 4 - Ingrese un numero decimal positivo: "))
+    print(f"{d} en binario es {decimal_a_binario(d)}")
+
+    # 5 a 8) Pruebas con los ejemplos del enunciado
+    print("\nEjercicio 5")
+    print("neuquen:", es_palindromo("neuquen"))
+    print("python:", es_palindromo("python"))
+
+    print("\nEjercicio 6")
+    print(suma_digitos(1234), suma_digitos(9), suma_digitos(305))   # 10 9 8
+
+    print("\nEjercicio 7")
+    print(contar_bloques(1), contar_bloques(2), contar_bloques(4))  # 1 3 10
+
+    print("\nEjercicio 8")
+    print(contar_digito(12233421, 2),
+          contar_digito(5555, 5),
+          contar_digito(123456, 7))                                  # 3 4 0
